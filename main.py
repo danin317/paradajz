@@ -11,6 +11,31 @@ else:
 def clear_screen():
     os.system(clear)
 
+def countdown_timer():
+    print("**COUNTDOWN TIMER**")
+    print("You've selected the countdown timer. Please enter the time below (format: hh:mm:ss)")
+    proceed = input()
+    time_split = proceed.split(":")
+    hours = int(time_split[0])
+    minutes = int(time_split[1])
+    seconds = int(time_split[2])
+    clear_screen()
+    while True:
+        print(f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+        seconds -= 1
+        if seconds == -1 and minutes == 0 and hours == 0:
+            break
+        if seconds == -1:
+            seconds = 59
+            minutes -= 1
+        if minutes == -1:
+            minutes = 59
+            if hours != 0:
+                hours -= 1
+        time.sleep(1)
+        clear_screen()
+    print("Timer done!")
+
 def stopwatch_timer():
     print("**STOPWATCH TIMER**")
     print("You've selected the stopwatch timer. The stopwatch will go on forever until you exit out of the program. Or until the stopwatch reaches 100 hours.")
@@ -49,6 +74,8 @@ while True:
         case "1":
             break
         case "2":
+            clear_screen()
+            countdown_timer()
             break
         case "3":
             clear_screen()
